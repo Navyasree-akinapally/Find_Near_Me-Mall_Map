@@ -1,0 +1,53 @@
+.m-2{
+  margin:unset;
+}
+.all{
+  padding: 12px;
+  padding-top: 21px;
+}
+.m-2-1{
+  margin-top: 2.8rem !important;
+  margin-right: 1rem !important;
+  line-height: 30px;
+  font-size: 1.075rem;
+  border-radius: 10px;
+  border: 2px solid #aeaeae;
+}
+.m-2-2{
+  margin-top: 1.8rem;
+  margin-right: 1rem !important;
+  line-height:30px;
+  font-size: 1.075rem;
+  border-radius: 10px;
+  border: 2px solid #aeaeae;
+
+}
+fst-italic {
+  font-style: unset;
+}
+.react-datepicker__day--in-range{
+  background-color: #009ef6;
+  color: white !important;
+  border-radius: 6px;
+}
+.react-datepicker{
+  font-style: normal;
+  box-shadow:1px 1px 1px 1px #aeaeae91 ;
+  border:solid white;
+  font-family: Poppins, Helvetica, "sans-serif";
+  
+}
+
+.react-datepicker__day-name{
+  color: #009ef6;
+}
+.react-datepicker__day{
+  color: #959595;
+}
+.react-datepicker__current-month{
+  color: #959595;
+}
+.d-flex-3{
+  margin-left: 3.5rem;
+  margin-bottom: 1rem;;
+}
