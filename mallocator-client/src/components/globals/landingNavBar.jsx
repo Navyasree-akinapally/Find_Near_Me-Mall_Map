@@ -37,7 +37,7 @@ const LandingNavbar = () => {
                     <ChavronLeftArrow />
                 </div>
                 <Link to="/" className="text-3xl font-semibold flex items-center gap-x-3">
-                    FIND NEAR ME - MALL MAP
+                    MALL MAP
                 </Link>
             </div>
 

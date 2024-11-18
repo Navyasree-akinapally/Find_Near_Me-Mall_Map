@@ -21,7 +21,7 @@ const AdminNavbar = ({ handleToggleSidebar }) => {
                     to="/"
                     className="text-lg font-bold text-purple-600"
                 >
-                    FIND NEAR ME - MALL MAP
+                    MALL MAP
                 </Link>
             </div>
 
