@@ -38,7 +38,7 @@ function SignUp() {
                 if (response) {
                     window.alert('success');
                     setLoading(false);
-                    navigate('/login');
+                    navigate('/auth/user');
                     return;
                 }
                 setStatus("Invalid credentials");
