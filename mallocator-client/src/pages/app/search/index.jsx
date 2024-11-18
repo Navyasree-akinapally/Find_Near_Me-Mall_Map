@@ -85,7 +85,7 @@ const SearchPage = () => {
                 <input
                     type="text"
                     className={`p-4 outline-none w-full text-black placeholder:text-black ${isDarkMode ? 'bg-slate-400' : 'bg-slate-200'}`}
-                    placeholder='Search Here...'
+                    placeholder='search for stores'
                     onChange={handleChange}
                 />
                 <button onClick={handleCloseSearch}>
