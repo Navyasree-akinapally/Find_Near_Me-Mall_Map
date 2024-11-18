@@ -112,7 +112,7 @@ const SearchPage = () => {
                         </div>
                     ) : (
                         <>
-                            WIP
+
                         </>
                     )}
                 </div>
