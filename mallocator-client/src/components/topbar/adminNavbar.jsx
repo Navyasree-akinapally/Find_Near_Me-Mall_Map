@@ -16,12 +16,12 @@ const AdminNavbar = ({ handleToggleSidebar }) => {
         <div className="flex flex-col justify-between bg-white shadow-lg p-6 h-full text-gray-800">
             {/* Brand Logo */}
             <div className='flex items-center gap-4 mb-8'>
-                <MenuIcon className="w-8 h-8 text-purple-600 cursor-pointer" onClick={handleToggleSidebar} />
+                <MenuIcon className="w-6 h-6 text-purple-600 cursor-pointer" onClick={handleToggleSidebar} />
                 <Link
                     to="/"
-                    className="text-3xl font-bold text-purple-600"
+                    className="text-lg font-bold text-purple-600"
                 >
-                    Mallocator
+                    FIND NEAR ME - MALL MAP
                 </Link>
             </div>
 

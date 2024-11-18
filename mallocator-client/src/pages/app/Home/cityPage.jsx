@@ -33,7 +33,7 @@ const CityPage = () => {
         <BaseLoading loading={loading}>
             <div className='mx-6 lg:mx-16 lg:py-8'>
                 <div className='flex flex-col gap-8 '>
-                    <div htmlFor="" className='text-2xl font-bold'>Discover the magical world of Mallocator in {stateName}</div>
+                    <div htmlFor="" className='text-2xl font-bold'>Discover the magical world of FIND NEAR ME - MALL MAP in {stateName}</div>
                     <span className='text-sm'>Discover our shopping centers</span>
                 </div>
                 <div className='m-20'>
