@@ -9,13 +9,12 @@ import { useTheme } from '../../context/theme-context';
 import { useState } from 'react';
 
 const LandingNavbar = () => {
-    const { isAuth, setIsAuth, auth } = useAuth()
+    const { isAuth, setIsAuth, auth, handleLogout, isProfileOpen, setIsProfileOpen } = useAuth()
     const { stateName, cityName } = useParams()
     const userData = isAuthenticated()
     const navigate = useNavigate()
 
     const { toggleDarkMode, isDarkMode } = useTheme()
-    const [isProfileOpen, setIsProfileOpen] = useState(false)
 
     const toggleProfileOpen = () => {
         setIsProfileOpen(!isProfileOpen)
@@ -25,11 +24,7 @@ const LandingNavbar = () => {
         navigate(-1)
     }
 
-    const handleLogout = () => {
-        authServices.logout();
-        setIsAuth(false)
-        setIsProfileOpen(false)
-    }
+
     return (
         <div className={`flex w-full justify-between items-center p-4 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-[#B9B4C7] text-gray-800'}`}>
             <div className="flex items-center gap-4 cursor-pointer">

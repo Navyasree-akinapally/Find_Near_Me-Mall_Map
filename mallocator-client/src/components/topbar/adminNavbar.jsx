@@ -3,13 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ADMIN_NAVBAR_ITEMS } from '../../constants/constants';
 import { Disclosure } from '@headlessui/react';
 import authServices from '../../services/auth.service';
+import { useAuth } from '../../context/auth-context';
 
 const AdminNavbar = ({ handleToggleSidebar }) => {
     const navigate = useNavigate();
+    const { setIsAuth } = useAuth()
 
     const handleLogout = async () => {
         authServices.logout();
-        navigate('/auth'); // Redirect to the login page after logout
+        setIsAuth(false)
+        navigate('/auth/user'); // Redirect to the login page after logout
     };
 
     return (

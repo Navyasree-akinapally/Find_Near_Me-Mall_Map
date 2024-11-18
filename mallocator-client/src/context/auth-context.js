@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { isAuthenticated } from "../helpers/localstorage";
 import { useLocation } from "react-router-dom";
 import userServices from "../services/app/user.service";
+import authServices from "../services/auth.service";
 
 export const AuthContext = createContext();
 
@@ -11,12 +12,14 @@ export const AuthProvider = ({ children }) => {
     const [isAdminAuth, setIsAdminAuth] = useState(false)
     const location = useLocation()
     const [userDetails, setUserDetails] = useState({})
+    const [isProfileOpen, setIsProfileOpen] = useState(false)
+
 
     useEffect(() => {
         if (auth && auth.user.role === 'admin') {
             setIsAdminAuth(true)
         }
-    }, [auth])
+    }, [auth, location])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -52,12 +55,21 @@ export const AuthProvider = ({ children }) => {
         }
     }, [isAuth])
 
+    const handleLogout = () => {
+        authServices.logout();
+        setIsAuth(false)
+        setIsProfileOpen(false)
+    }
+
     const contextValues = {
         setIsAuth,
         isAuth,
         isAdminAuth,
         auth,
-        userDetails
+        userDetails,
+        isProfileOpen,
+        handleLogout,
+        setIsProfileOpen
     }
 
     return (

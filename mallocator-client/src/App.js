@@ -15,12 +15,12 @@ function App() {
         <Route path='/admin/*' element={<AdminRoutes />} />
         {isAuth ? (
           <>
-            <Route path='/auth/*' element={<Navigate to={'/'} />} />
+            <Route path='/auth/*' element={<Navigate to={'/'} replace />} />
           </>
         ) : (
           <>
             <Route path="/auth/*" element={<AuthRoutes />} />
-            <Route path='/admin/*' element={<Navigate to={'/auth/user'} />} />
+            <Route path='/admin/*' element={<Navigate to={'/auth/user'} replace />} />
 
           </>
         )}
