@@ -47,7 +47,7 @@ const ShopDetails = () => {
 
     const handleLike = async (storeId) => {
         if (!isAuth) {
-            return navigate('/auth');
+            return navigate('/auth/user');
         }
 
         try {
