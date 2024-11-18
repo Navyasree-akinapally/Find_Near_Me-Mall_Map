@@ -10,15 +10,16 @@ const Dashboard = () => {
     const [storesData, setStoresData] = useState([]);
     const [adminCount, setAdminCount] = useState(0);
     const [customerCount, setCustomerCount] = useState(0);
-
+    const [topCatData, setTopCatData] = useState(null)
     const loadData = async () => {
         try {
-            const [mallsRes, usersRes, storesRes, adminCountRes, customerCountRes] = await Promise.all([
+            const [mallsRes, usersRes, storesRes, adminCountRes, customerCountRes, topCatRes] = await Promise.all([
                 mallServices.getMalls(),
                 adminUserServices.getUsers(),
                 storeService.getStores(),
                 adminUserServices.getAdminCount(),
                 adminUserServices.getCustomerCount(),
+                storeService.getTopCategories()
             ]);
 
             if (mallsRes?.data) setMallsData(mallsRes.data);
@@ -26,6 +27,7 @@ const Dashboard = () => {
             if (storesRes?.data) setStoresData(storesRes.data);
             if (adminCountRes?.data) setAdminCount(adminCountRes.data);
             if (customerCountRes?.data) setCustomerCount(customerCountRes.data);
+            if (topCatRes?.data) setTopCatData(topCatRes.data)
         } catch (e) {
             console.error("Error loading data:", e);
         }
@@ -35,6 +37,8 @@ const Dashboard = () => {
         loadData();
     }, []);
 
+    console.log(topCatData);
+
     // Pie chart data
     const userAnalytics = [
         { name: "Admins", value: adminCount },
@@ -42,22 +46,11 @@ const Dashboard = () => {
     ];
     const COLORS = ["#0088FE", "#00C49F"];
 
-    const mallAnalytics = [
-        { name: "North Zone", value: 30 },
-        { name: "South Zone", value: 40 },
-        { name: "East Zone", value: 20 },
-        { name: "West Zone", value: 30 },
-    ];
-
-    const MALL_COLORS = ["#FF8042", "#FFBB28", "#0088FE", "#00C49F"];
-
     // Bar chart data
-    const storeDistribution = [
-        { name: "Electronics", stores: 50 },
-        { name: "Clothing", stores: 70 },
-        { name: "Groceries", stores: 40 },
-        { name: "Entertainment", stores: 60 },
-    ];
+    const storeDistribution = topCatData?.map(item => ({
+        name: item.categoryName,
+        stores: item.storeCount
+    }))
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">
@@ -85,7 +78,7 @@ const Dashboard = () => {
             </div>
 
             {/* Charts */}
-            <div className="mt-10 gap-10">
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10">
                 {/* User Analytics Pie Chart */}
                 <div className="bg-white rounded-lg shadow p-6">
                     <h2 className="text-xl font-semibold text-gray-800 mb-4">User Analytics</h2>
@@ -109,7 +102,7 @@ const Dashboard = () => {
                     </ResponsiveContainer>
                 </div>
 
-                {/* Store Distribution Bar Chart
+                {/* Store Distribution Bar Chart */}
                 <div className="bg-white rounded-lg shadow p-6">
                     <h2 className="text-xl font-semibold text-gray-800 mb-4">Store Distribution</h2>
                     <ResponsiveContainer width="100%" height={300}>
@@ -122,7 +115,7 @@ const Dashboard = () => {
                             <Bar dataKey="stores" fill="#82ca9d" />
                         </BarChart>
                     </ResponsiveContainer>
-                </div> */}
+                </div>
             </div>
         </div>
     );

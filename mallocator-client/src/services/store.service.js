@@ -22,6 +22,16 @@ const getStores = async () => {
     }
 }
 
+const getTopCategories = async () => {
+    try {
+        const res = await api.get(API_ENDPOINTS.ADMIN_GET_TOP_CATEGORIES);
+        return res.data
+    } catch (e) {
+        console.log(e);
+        throw e
+    }
+}
+
 const getStoreById = async (storeId) => {
     try {
         const res = await api.get(API_ENDPOINTS.GET_ADMIN_STORE_BY_ID_API(storeId));
@@ -58,7 +68,8 @@ const storeService = {
     getStores,
     getStoreById,
     updateStoreById,
-    deleteStoreById
+    deleteStoreById,
+    getTopCategories
 }
 
 export default storeService

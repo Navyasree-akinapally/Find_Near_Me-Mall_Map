@@ -60,6 +60,8 @@ const API_ENDPOINTS = {
 
     ADMIN_GET_ADMIN_COUNT: '/admin/user/admin-count',
     ADMIN_GET_CUSTOMER_COUNT: '/admin/user/customer-count',
+
+    ADMIN_GET_TOP_CATEGORIES: '/admin/stores/top-categories'
 }
 
 export default API_ENDPOINTS
