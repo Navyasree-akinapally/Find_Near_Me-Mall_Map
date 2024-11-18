@@ -52,7 +52,8 @@ const storeCtrl = {
     updateStoreById,
     deleteStoreById,
     addOpeningHours,
-    addMediaLinks
+    addMediaLinks,
+    getTopCategories
 }
 
 module.exports = storeCtrl;
@@ -188,6 +189,49 @@ async function getStoreById(req) {
         const store = await Store.findById(storeId)
 
         return store
+    } catch (e) {
+        throw handleControllerError(e)
+    }
+}
+
+async function getTopCategories(req) {
+    try {
+
+        const topCategories = await Store.aggregate([
+            {
+                $group: {
+                    _id: "$category", // Group by the category field
+                    storeCount: { $sum: 1 }, // Count the number of stores in each category
+                },
+            },
+            {
+                $sort: { storeCount: -1 }, // Sort by store count in descending order
+            },
+            {
+                $limit: 4, // Limit to the top 4 categories
+            },
+            {
+                $lookup: {
+                    from: "categories", // Reference the Category collection
+                    localField: "_id", // Use the grouped category ID
+                    foreignField: "_id", // Match with Category collection's _id
+                    as: "categoryDetails",
+                },
+            },
+            {
+                $unwind: "$categoryDetails", // Flatten the category details array
+            },
+            {
+                $project: {
+                    _id: 0, // Exclude _id from the result
+                    categoryName: "$categoryDetails.title", // Include category name
+                    storeCount: 1, // Include store count
+                },
+            },
+        ]);
+
+
+        return topCategories
     } catch (e) {
         throw handleControllerError(e)
     }

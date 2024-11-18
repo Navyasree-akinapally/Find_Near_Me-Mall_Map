@@ -12,6 +12,9 @@ router.post('/', asyncHandler(createStore))
 
 router.get('/', asyncHandler(getStore))
 
+router.get('/top-categories', asyncHandler(getTopCategories))
+
+
 router.get('/:storeId', asyncHandler(getStoreById))
 
 router.patch('/:storeId', asyncHandler(updateStoreById))
@@ -48,6 +51,16 @@ async function getStore(req, res, next) {
 async function getStoreById(req, res, next) {
     try {
         const response = await storeCtrl.getStoreById(req);
+        if (response) return createResponse(res, resStatusCode.CREATED, resMsg.CREATED, response);
+        return createError(res, resStatusCode.UNABLE_CREATE, { message: resMsg.UNABLE_CREATE })
+    } catch (e) {
+        return createError(res, resStatusCode.BAD_REQUEST, e)
+    }
+}
+
+async function getTopCategories(req, res, next) {
+    try {
+        const response = await storeCtrl.getTopCategories(req);
         if (response) return createResponse(res, resStatusCode.CREATED, resMsg.CREATED, response);
         return createError(res, resStatusCode.UNABLE_CREATE, { message: resMsg.UNABLE_CREATE })
     } catch (e) {
