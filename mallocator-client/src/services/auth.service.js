@@ -56,12 +56,34 @@ const getLikedStores = async () => {
     }
 }
 
+const forgotPassword = async (payload) => {
+    try {
+        const res = await api.post(API_ENDPOINTS.APP_FORGOT_PASSWORD_API, payload);
+        return res.data
+    } catch (e) {
+        console.log(e);
+        throw e
+    }
+}
+
+const resetPassword = async (payload) => {
+    try {
+        const res = await api.post(API_ENDPOINTS.APP_RESET_PASSWORD_API, payload);
+        return res.data
+    } catch (e) {
+        console.log(e);
+        throw e
+    }
+}
+
 const authServices = {
     signUp,
     login,
     logout,
     toggleLike,
-    getLikedStores
+    getLikedStores,
+    forgotPassword,
+    resetPassword
 }
 
 export default authServices

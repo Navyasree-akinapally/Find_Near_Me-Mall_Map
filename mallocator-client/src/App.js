@@ -5,6 +5,7 @@ import { useAuth } from './context/auth-context';
 import AdminRoutes from './routes/adminRoutes';
 import useStore from './context/store-context';
 import NotFound from './pages/not-found';
+import ForgotPassword from './components/auth/forgot-password';
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
           </>
         )}
         <Route path='/*' element={<PublicRoutes />} />
+
+
         <Route path='/auth' element={<NotFound />} />
         <Route path='/:stateName' element={<NotFound />} />
 

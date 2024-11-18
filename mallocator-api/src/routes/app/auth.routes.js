@@ -15,7 +15,23 @@ router.post('/sign-up', signUp)
 router.post('/:role/login', login)
 
 
+/**
+ * @route POST api/v1/auth/forget-password
+ * @description forget password
+ * @returns JSON
+ * @access public
+ */
 
+router.post('/forget-password', asyncHandler(forgetPassword));
+
+/**
+ * @route POST api/v1/auth/reset-password
+ * @description reset password
+ * @returns JSON
+ * @access public
+ */
+
+router.post('/reset-password', asyncHandler(resetPassword));
 
 async function signUp(req, res, next) {
     try {
@@ -52,6 +68,28 @@ async function getLikedStores(req, res, next) {
         const response = await authCtrl.getLikedStores(req);
         if (response) return createResponse(res, resStatusCode.SUCCESS_FETCH, resMsg.SUCCESS_FETCH, response);
         return createError(res, resStatusCode.UNABLE_FETCH, { message: resMsg.UNABLE_FETCH })
+    } catch (e) {
+        return createError(res, resStatusCode.BAD_REQUEST, e)
+    }
+}
+
+async function forgetPassword(req, res, next) {
+    try {
+        let response = await authCtrl.forgetPassword(req);
+        if (response) return createResponse(res, resStatusCode.SUCCESS, resMsg.SUCCESS, response);
+        else
+            return createError(res, resStatusCode.BAD_REQUEST, { message: resMsg.BAD_REQUEST })
+    } catch (e) {
+        return createError(res, resStatusCode.BAD_REQUEST, e)
+    }
+}
+
+async function resetPassword(req, res, next) {
+    try {
+        let response = await authCtrl.resetPassword(req);
+        if (response) return createResponse(res, resStatusCode.SUCCESS, resMsg.SUCCESS, response);
+        else
+            return createError(res, resStatusCode.BAD_REQUEST, { message: resMsg.BAD_REQUEST })
     } catch (e) {
         return createError(res, resStatusCode.BAD_REQUEST, e)
     }

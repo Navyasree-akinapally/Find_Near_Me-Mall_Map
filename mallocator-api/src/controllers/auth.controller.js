@@ -4,7 +4,9 @@ const User = require("../models/user.model");
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs');
 const config = require("../../config/config");
-const Store = require("../models/store.model");
+const uuid = require('uuid');
+const sendMail = require("../../config/mail");
+
 
 
 const signUpValidationSchema = Joi.object({
@@ -19,9 +21,24 @@ const loginValidationSchema = Joi.object({
     password: Joi.string().required()
 })
 
+const forgetPasswordSchema = Joi.object({
+    email: Joi.string().email().required()
+})
+
+const resetPasswordSchema = Joi.object({
+    token: Joi.string().required().label("token"),
+    password: Joi.string().required(),
+    confirm_password: Joi.string()
+        .valid(Joi.ref("password"))
+        .required()
+        .label("Confirm password")
+});
+
 const authCtrl = {
     signUp,
     login,
+    forgetPassword,
+    resetPassword
 }
 
 module.exports = authCtrl
@@ -100,4 +117,71 @@ async function login(req) {
         throw handleControllerError(e)
     }
 }
+
+async function forgetPassword(req) {
+    try {
+        let { error } = forgetPasswordSchema.validate(req.body);
+        if (error) {
+            throw Error(error.details[0].message)
+        }
+
+        const { email } = req.body;
+
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            throw Error('Email dosent Exist')
+        }
+
+        const resetToken = uuid.v4();
+
+        user.resetPasswordToken = resetToken;
+        user.resetPasswordTokenExpiration = Date.now() + 3600000 // token valid for 1 hour
+
+        await user.save();
+
+        const verificationLink = `http://localhost:3000/auth/reset-password/${resetToken}`;
+        const mailOptions = {
+            to: email,
+            subject: 'Verify your email',
+            html: `<p>Click on the following link to forget your password: ${verificationLink}</p>`,
+        }
+        await sendMail(mailOptions)
+        return true
+    } catch (e) {
+        throw handleControllerError(e)
+    }
+}
+
+async function resetPassword(req) {
+    try {
+        const { error } = resetPasswordSchema.validate(req.body);
+        if (error) {
+            throw Error(error.details[0].message)
+        }
+
+        const { token, password } = req.body;
+        const user = await User.findOne({
+            resetPasswordToken: token,
+            resetPasswordTokenExpiration: { $gt: Date.now() },
+        })
+
+        if (!user) {
+            throw Error('Invalid or expired reset token')
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Update the users password and reset token
+        user.password = hashedPassword;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordTokenExpiration = undefined;
+        await user.save();
+
+        return true
+    } catch (e) {
+        throw handleControllerError(e)
+    }
+}
+
 

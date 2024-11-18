@@ -60,7 +60,7 @@ const LandingNavbar = () => {
                     <div className="">
                         {isAuth ? (
                             <div className="flex gap-4">
-                                {auth.user.role === 'admin' && (
+                                {auth?.user?.role === 'admin' && (
                                     <Link
                                         to="/admin/mall/list"
                                         className={`py-2 px-5 font-semibold text-lg text-white rounded-full hover:bg-indigo-500 ${isDarkMode ? 'bg-[#DE8F5F]' : 'bg-[#352F44]'}`}

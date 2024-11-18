@@ -47,7 +47,15 @@ const customSchema = new mongoose.Schema({
     dark_mode: {
         type: Boolean,
         default: false,
-    }
+    },
+    resetPasswordToken: {
+        type: String,
+        required: false,
+    },
+    resetPasswordTokenExpiration: {
+        type: Date,
+        required: false,
+    },
 }, { timestamps: true })
 
 const User = mongoose.model('User', customSchema)

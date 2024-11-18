@@ -4,6 +4,8 @@ const API_ENDPOINTS = {
     SIGNUP_API: '/app/auth/sign-up',
     LOGIN_API: (role) => `/app/auth/${role}/login`,
     APP_USER_DETAILS_API: '/app/user/user-details',
+    APP_FORGOT_PASSWORD_API: '/app/auth/forget-password',
+    APP_RESET_PASSWORD_API: '/app/auth/reset-password',
 
     GET_STATES_API: '/app/malls/states',
     GET_MALLS_BY_STATE_API: (stateId) => `/app/malls/${stateId}`,
