@@ -32,7 +32,7 @@ function SignUp() {
                     username: values.username,
                     email: values.email,
                     password: values.password,
-                    role: values.role,
+                    role: reg,
                 };
                 const response = await authServices.signUp(payload);
                 if (response) {
