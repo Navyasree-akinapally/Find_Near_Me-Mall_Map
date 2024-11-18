@@ -68,7 +68,7 @@ function SignUp() {
             >
                 <div className="text-center mb-10">
                     <h1 className="text-white text-2xl font-bold mb-3">
-                        Sign Up for {isAdminSignup ? "Admin" : "Customer"}
+                        Sign Up As {isAdminSignup ? "Admin" : "Customer"}
                     </h1>
                     <div className="text-gray-400 font-semibold text-lg">
                         Already have an Account?{" "}
