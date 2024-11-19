@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import appStoreService from '../../../services/app/store.service';
 import BaseLoading from '../../../components/loader/config-loading';
-import { Dot, HeartIcon, Phone } from 'lucide-react';
+import { Dot, DotIcon, HeartIcon, Phone } from 'lucide-react';
 import { useAuth } from '../../../context/auth-context';
 import { dismissToast, successToast } from '../../../components/toastNotifications';
 import authServices from '../../../services/auth.service';
@@ -66,36 +66,6 @@ const ShopDetails = () => {
         }
     };
 
-    const openingHours = [
-        {
-            day: 'Monday',
-            time: '09:00 until 20:00'
-        },
-        {
-            day: 'Tuesday',
-            time: '09:00 until 20:00'
-        },
-        {
-            day: 'Wednesday',
-            time: '09:00 until 20:00'
-        },
-        {
-            day: 'Thursday',
-            time: '09:00 until 20:00'
-        },
-        {
-            day: 'Friday',
-            time: '09:00 until 20:00'
-        },
-        {
-            day: 'Saturday',
-            time: '09:00 until 20:00'
-        },
-        {
-            day: 'Sunday',
-            time: 'Closed'
-        }
-    ]
     console.log(data);
     return (
         <BaseLoading loading={loading}>
@@ -152,25 +122,38 @@ const ShopDetails = () => {
                     <h1 className='text-4xl font-bold mb-6'>Products</h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
                         {data?.products?.map((prod) => (
-                            <div className={`max-h-[25em] cols-span-1 cursor-pointer border-[1.25px] border-slate-200 rounded-sm transition hover:scale-105 p-2 text-center text-sm ${isDarkMode ? 'bg-[#FFCF9D] text-gray-900' : 'bg-[#352F44] text-white'}`}>
-                                <div className='flex flex-col items-center w-full'>
-                                    <div className='aspect-square overflow-hidden relative'>
-                                        <img src={prod.image} alt={prod.name} className='object-contain w-full h-full' />
+                            <div
+                                className={`relative max-h-[25em] cols-span-1 cursor-pointer border-[1.25px] border-slate-200 rounded-sm transition hover:scale-105 p-2 text-center text-sm
+        ${isDarkMode ? 'bg-[#FFCF9D] text-gray-900' : 'bg-[#352F44] text-white'}
+        `}
+                                key={prod._id} // Assuming each product has a unique `_id`
+                            >
+                                <div className="flex flex-col items-center w-full">
+                                    <div className="aspect-square overflow-hidden relative">
+                                        <img
+                                            src={prod.image}
+                                            alt={prod.name}
+                                            className="object-contain w-full h-full"
+                                        />
                                     </div>
-                                    <div className=''>{truncateText(prod.name)}</div>
+                                    <div>{truncateText(prod.name)}</div>
                                     {/* <div><Rating readOnly value={productRating} /></div> */}
                                     {/* <div>
-                                        {prod.reviews.length} Reviews
-                                    </div> */}
-                                    <div className='font-semibold'>
-                                        {priceFormate(prod.price)}
-                                    </div>
-                                    <div>
-
+                {prod.reviews.length} Reviews
+            </div> */}
+                                    <div className="font-semibold">{priceFormate(prod.price)}</div>
+                                    <div
+                                        className={`
+                                            absolute end-0 top-0 w-12 h-12 rounded-full 
+                ${prod.status === 'available' ? 'text-green-500' : prod.status === 'not_available' ? 'text-red-500' : 'text-yellow-500'}
+                `}
+                                    >
+                                        <DotIcon className="w-full h-full" />
                                     </div>
                                 </div>
                             </div>
                         ))}
+
                     </div>
                 </div>
             </div>

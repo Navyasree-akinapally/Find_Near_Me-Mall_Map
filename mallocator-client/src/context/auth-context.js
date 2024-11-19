@@ -10,14 +10,21 @@ export const AuthProvider = ({ children }) => {
     const [isAuth, setIsAuth] = useState(false);
     const [auth, setAuth] = useState(null);
     const [isAdminAuth, setIsAdminAuth] = useState(false)
+    const [isMallAdminAuth, setIsMallAdminAuth] = useState(false)
     const location = useLocation()
     const [userDetails, setUserDetails] = useState({})
     const [isProfileOpen, setIsProfileOpen] = useState(false)
 
 
     useEffect(() => {
-        if (auth && auth.user.role === 'admin') {
+        if (auth && auth.user.role === 'superadmin') {
             setIsAdminAuth(true)
+        }
+    }, [auth, location])
+
+    useEffect(() => {
+        if (auth && auth.user.role === 'malladmin') {
+            setIsMallAdminAuth(true)
         }
     }, [auth, location])
 

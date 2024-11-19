@@ -36,7 +36,12 @@ const customSchema = new mongoose.Schema({
     brand: {
         type: String,
         required: false
-    }
+    },
+    status: {
+        type: String,
+        enum: ["available", "not_available", "coming_soon"],
+        default: "available",
+    },
 },
     {
         timestamps: true,

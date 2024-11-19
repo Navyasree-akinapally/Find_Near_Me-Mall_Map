@@ -13,7 +13,7 @@ const signUpValidationSchema = Joi.object({
     username: Joi.string().required(),
     email: Joi.string().required().email(),
     password: Joi.string().required(),
-    role: Joi.string().optional()
+    role: Joi.string().optional().allow(null)
 })
 
 const loginValidationSchema = Joi.object({
@@ -83,13 +83,14 @@ async function login(req) {
             throw Error(error.details[0].message)
         }
         const { role } = req.params
-        if (role !== 'admin' && role !== 'customer') {
+        console.log(role);
+        if (role !== 'malladmin' && role !== 'customer' && role !== 'superadmin') {
             throw Error('Invalid role specified');
         }
         const { email, password } = req.body;
         let user
-        if (role === 'admin') {
-            user = await User.findOne({ email, role: 'admin' });
+        if (role === 'superadmin') {
+            user = await User.findOne({ email, role: 'superadmin' });
             if (!user) {
                 throw Error('Admin with this email does not exist');
             }
@@ -97,6 +98,11 @@ async function login(req) {
             user = await User.findOne({ email, role: 'customer' });
             if (!user) {
                 throw Error('Customer with this email does not exist');
+            }
+        } else if (role === 'malladmin') {
+            user = await User.findOne({ email, role: 'malladmin' });
+            if (!user) {
+                throw Error('malladmin with this email does not exist');
             }
         }
 

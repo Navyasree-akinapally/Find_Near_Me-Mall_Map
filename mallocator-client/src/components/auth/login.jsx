@@ -12,7 +12,6 @@ function Login() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const isAdminLogin = location.pathname === "/auth/admin";
     const [loading, setLoading] = useState(false);
     const [initialValues, setInitialValues] = useState({
         email: "",
@@ -27,8 +26,7 @@ function Login() {
         onSubmit: async (values, { setStatus, setSubmitting, setFieldValue }) => {
             setLoading(true);
             try {
-                const role = isAdminLogin ? 'admin' : 'customer'
-                const res = await authServices.login(values, role);
+                const res = await authServices.login(values, 'customer');
                 if (res) {
                     setStatus(null);
                     setLoading(false);
@@ -60,7 +58,7 @@ function Login() {
             >
                 <div className="text-center mb-10">
                     <h1 className="text-white text-2xl font-bold mb-3">
-                        Sign In to {isAdminLogin ? "Admin" : "User"} Portal
+                        Sign In to "User" Portal
                     </h1>
                     <div className="text-slate-500 font-semibold text-lg">
                         New Here?{" "}
@@ -129,16 +127,6 @@ function Login() {
                 <span className="text-left text-white mt-2">Forgetten Password? {" "}
                     <Link to={'/auth/forgot-password'} className="hover:underline text-teal-500">Click Here</Link>
                 </span>
-                <div className="mt-4">
-                    <button
-                        type="button"
-                        className="text-white py-2 rounded-md font-semibold underline"
-                        onClick={() => navigate(isAdminLogin ? "/auth/user" : "/auth/admin")}
-                    >
-                        Switch to {isAdminLogin ? "User" : "Admin"} Login
-                    </button>
-                </div>
-
             </form>
 
         </BaseLoading>

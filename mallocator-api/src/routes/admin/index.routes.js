@@ -6,6 +6,7 @@ const cityRoutes = require('./city.routes')
 const categoryRoutes = require('./category.routes')
 const productRoutes = require('./products.routes')
 const userRoutes = require('./user.routes')
+const mallAdminRoutes = require('./mall-admin.routes')
 
 const router = express.Router()
 
@@ -24,3 +25,6 @@ router.use('/category', categoryRoutes)
 router.use('/product', productRoutes)
 
 router.use('/user', userRoutes)
+
+router.use('/mall-admin', mallAdminRoutes)
+

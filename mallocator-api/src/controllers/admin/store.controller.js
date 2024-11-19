@@ -74,7 +74,7 @@ async function createStore(req) {
             throw Error("Store already exists")
         }
 
-        const store = new Store(req.body);
+        const store = new Store({ ...req.body, user_id: req.user._id });
 
         console.log(store);
 

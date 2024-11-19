@@ -113,6 +113,11 @@ const customSchema = new mongoose.Schema({
             required: false
         }
     ],
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    }
 }, { timestamps: true, versionKey: false })
 
 customSchema.index({ name: 1, mall: 1 }, { unique: true });
