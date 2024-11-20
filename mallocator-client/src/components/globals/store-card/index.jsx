@@ -64,6 +64,7 @@ const StoreCard = ({ store }) => {
                     <label>{store.name}</label>
                     <label className='text-xs'>{store.isOpen ? 'Opened' : 'Closed'}</label>
                 </div>
+
             </Link>
 
         </div>

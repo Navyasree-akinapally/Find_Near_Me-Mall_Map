@@ -32,7 +32,6 @@ function SignUp() {
                 };
                 const response = await authServices.signUp(payload);
                 if (response) {
-                    window.alert('success');
                     setLoading(false);
                     navigate('/auth/user');
                     return;
@@ -61,12 +60,12 @@ function SignUp() {
             >
                 <div className="text-center mb-8">
                     <h1 className="text-2xl font-bold mb-2">
-                        Sign Up As {isAdminSignup ? "Admin" : "Customer"}
+                        Sign Up
                     </h1>
                     <div className="text-gray-400 text-sm">
                         Already have an Account?{" "}
                         <Link
-                            to={!isAdminSignup ? "/auth/customer" : "/auth/admin"}
+                            to={"/auth/customer"}
                             className="text-blue-500 font-bold"
                         >
                             Login
@@ -152,18 +151,6 @@ function SignUp() {
                         ) : (
                             "Submit"
                         )}
-                    </button>
-                </div>
-
-                <div className="mt-4 text-center">
-                    <button
-                        type="button"
-                        className="text-sm text-blue-500 underline"
-                        onClick={() =>
-                            navigate(isAdminSignup ? "/auth/registration/customer" : "/auth/registration/admin")
-                        }
-                    >
-                        Switch to {isAdminSignup ? "User" : "Admin"} Signup
                     </button>
                 </div>
             </form>

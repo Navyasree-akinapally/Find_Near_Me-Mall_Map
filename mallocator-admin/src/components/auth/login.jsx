@@ -57,7 +57,7 @@ function Login() {
 
     return (
         <BaseLoading loading={loading}>
-            <form
+            {/* <form
                 className="w-full text-white"
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -140,6 +140,101 @@ function Login() {
                     <button
                         type="button"
                         className="text-white py-2 rounded-md font-semibold underline"
+                        onClick={switchLogin}
+                    >
+                        Switch to {isSuperAdminLogin ? "Mall Admin" : "Super Admin"} Login
+                    </button>
+                </div>
+            </form> */}
+            <form
+                className="w-full max-w-md p-6 bg-gray-800 text-white rounded-lg shadow-md md:max-w-lg lg:max-w-xl"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    formik.handleSubmit();
+                }}
+                noValidate
+                id="kt_login_signin_form"
+            >
+                <div className="text-center mb-8">
+                    <h1 className="text-2xl font-bold mb-2">
+                        Sign In to {isSuperAdminLogin ? "Super Admin" : "Mall Admin"} Portal
+                    </h1>
+                    {/* <div className="text-gray-400 text-sm">
+                        New Here? {" "}
+                        <Link
+                            to={'/auth/registration/malladmin'}
+                            className="text-blue-500 font-bold"
+                        >
+                            Create an Account
+                        </Link>
+                    </div> */}
+                </div>
+
+                {formik.status && (
+                    <div className="mb-4 text-red-500 font-medium">
+                        <div>{formik.status}</div>
+                    </div>
+                )}
+
+                <div className="space-y-4">
+
+                    <div>
+                        <label className="block text-sm font-semibold mb-2">Email</label>
+                        <input
+                            placeholder="Enter email"
+                            {...formik.getFieldProps("email")}
+                            className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring focus:ring-blue-500"
+                            type="email"
+                            name="email"
+                            autoComplete="off"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-semibold mb-2">Password</label>
+                        <div className="flex items-center">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                {...formik.getFieldProps("password")}
+                                className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring focus:ring-blue-500"
+                                autoComplete="off"
+                                placeholder="Password"
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="ml-2 text-gray-400 focus:outline-none hover:text-gray-200"
+                            >
+                                <i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`} />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mt-6">
+                    <button
+                        type="submit"
+                        className="w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow-md transition duration-200 disabled:bg-gray-600"
+                        disabled={formik.isSubmitting}
+                        onClick={() => setIsButtonClicked(true)}
+                    >
+                        {loading && isButtonClicked ? (
+                            <span>
+                                Please wait...
+                                <span className="ml-2 spinner-border spinner-border-sm"></span>
+                            </span>
+                        ) : (
+                            "Submit"
+                        )}
+                    </button>
+                </div>
+                <span className="text-sm text-gray-500">Forgotten Password?{" "}
+                    <Link to={'/auth/forgot-password'} className="hover:underline text-blue-500">Click Here</Link>
+                </span>
+                <div className="mt-4 text-center">
+                    <button
+                        type="button"
+                        className="text-sm text-blue-500 underline"
                         onClick={switchLogin}
                     >
                         Switch to {isSuperAdminLogin ? "Mall Admin" : "Super Admin"} Login

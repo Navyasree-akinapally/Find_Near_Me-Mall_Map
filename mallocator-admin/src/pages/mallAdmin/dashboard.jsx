@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import mallServices from "../../services/mallAdmin/mall.service";
+import { Edit } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     const [mallsData, setMallsData] = useState(null);
-
+    const navigate = useNavigate()
     // Load data from the API
     const loadData = async () => {
         try {
@@ -28,9 +30,12 @@ const Dashboard = () => {
                 <div key={mall._id} className="mb-12">
                     {/* Mall Information */}
                     <div className="bg-white shadow rounded-lg p-6 mb-6">
-                        <h1 className="text-3xl font-bold text-gray-800 mb-2">{mall.title}</h1>
+                        <h1 className="text-3xl font-bold text-gray-800 mb-2 flex justify-between">
+                            {mall.title}
+                            <Edit className="cursor-pointer" onClick={() => navigate(`/malladmin/mall/${mall._id}/edit`)} />
+                        </h1>
                         <p className="text-gray-600">
-                            Location: {mall.city.name}, {mall.state.name}
+                            Location: <a href={mall.location_url} target="_blank" rel="noreferrer" className="text-teal-500 hover:underline">{mall.city.name}, {mall.state.name}</a>
                         </p>
                         <p className="text-gray-600">
                             Floors Available: {mall.available_floors.length}

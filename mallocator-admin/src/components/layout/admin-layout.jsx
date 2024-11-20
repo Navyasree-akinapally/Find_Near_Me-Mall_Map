@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import AdminNavbar from '../topbar/adminNavbar';
 import useStore from '../../context/store-context';
-import { MenuIcon } from 'lucide-react';
+import { Home, MenuIcon, ShoppingBag } from 'lucide-react';
+import MiniSideBar from './../globals/min-side-bar/index';
 
 const AdminLayout = () => {
     const { dropdownRef } = useStore();
@@ -14,14 +15,16 @@ const AdminLayout = () => {
     };
 
     return (
-        <div className="flex w-full text-black" ref={dropdownRef}>
+        <div className="flex min-h-screen w-full text-black" ref={dropdownRef}>
             {/* Sidebar Section */}
 
             <div
                 className={`bg-white ${isSidebarCollapsed ? 'w-16' : 'w-[20em]'
                     }`}
             >
-                {!isSidebarCollapsed ? <AdminNavbar handleToggleSidebar={handleToggleSidebar} /> : <MenuIcon className="w-8 h-8 cursor-pointer mt-4 text-center mx-auto" onClick={handleToggleSidebar} />}
+                {!isSidebarCollapsed ? <AdminNavbar handleToggleSidebar={handleToggleSidebar} /> : (
+                    <MiniSideBar handleToggleSidebar={handleToggleSidebar} />
+                )}
             </div>
 
             {/* Main Content Section */}

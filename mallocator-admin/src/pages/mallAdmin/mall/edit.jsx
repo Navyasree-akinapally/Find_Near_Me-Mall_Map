@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import BasePage from '../../../components/common/basePage';
 import FormBase from '../../../components/common/forms/baseFormNested';
-import locationService from '../../../services/location.service';
 import { useFormikContext } from 'formik';
 import BaseLoading from '../../../components/loader/config-loading';
 import { successToast } from '../../../components/toastNotifications';
 import { AddMallFormFieldDefinations, UpdateMallFormFieldDefinations } from '../../../containers/fielddefinations/mallFormFieldDefinations';
-import mallServices from '../../../services/mall.service';
 import { useParams } from 'react-router-dom';
+import locationService from '../../../services/mallAdmin/location.service';
+import mallServices from '../../../services/mallAdmin/mall.service';
 
-const CreateMall = () => {
+const EditMall = () => {
     const { mallId } = useParams()
     const [fieldDefinations, setFieldDefinations] = useState([])
     const [loading, setLoading] = useState(false);
@@ -177,4 +177,4 @@ const CreateMall = () => {
     );
 }
 
-export default CreateMall;
+export default EditMall;

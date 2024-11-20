@@ -21,10 +21,10 @@ const AdminNavbar = ({ handleToggleSidebar }) => {
             <div>
                 <div className="flex items-center gap-4 mb-8">
                     <MenuIcon
-                        className="w-6 h-6 text-purple-600 cursor-pointer"
+                        className="w-8 h-8 text-purple-600 cursor-pointer"
                         onClick={handleToggleSidebar}
                     />
-                    <Link to="/" className="text-lg font-bold text-purple-600">
+                    <Link to="/malladmin/" className="text-2xl font-bold text-purple-600">
                         MALL MAP
                     </Link>
                 </div>

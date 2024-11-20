@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import useStore from '../../context/store-context';
 import { MenuIcon } from 'lucide-react';
 import MallAdminNavBar from './../topbar/mallAdminNavbar';
+import MiniSideBar from '../globals/min-side-bar';
 
 const MallAdminLayout = () => {
     const { dropdownRef } = useStore();
@@ -21,7 +22,7 @@ const MallAdminLayout = () => {
                 className={`transition-all bg-white duration-300 ${isSidebarCollapsed ? 'w-16' : 'w-[20em]'
                     }`}
             >
-                {!isSidebarCollapsed ? <MallAdminNavBar handleToggleSidebar={handleToggleSidebar} /> : <MenuIcon className="w-8 h-8 cursor-pointer mt-4 text-center mx-auto" onClick={handleToggleSidebar} />}
+                {!isSidebarCollapsed ? <MallAdminNavBar handleToggleSidebar={handleToggleSidebar} /> : <MiniSideBar handleToggleSidebar={handleToggleSidebar} />}
             </div>
 
             {/* Main Content Section */}

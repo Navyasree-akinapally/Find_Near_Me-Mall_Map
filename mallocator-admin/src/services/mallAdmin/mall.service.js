@@ -15,7 +15,7 @@ const getMalls = async () => {
 
 const getMallById = async (mallId) => {
     try {
-        const res = await api.get(API_ENDPOINTS.GET_ADMIN_MALL_BY_ID_API(mallId));
+        const res = await api.get(API_ENDPOINTS.MALL_ADMIN_GET_ADMIN_MALL_BY_ID_API(mallId));
         return res.data
     } catch (e) {
         console.log(e);
@@ -25,7 +25,7 @@ const getMallById = async (mallId) => {
 
 const updateMallById = async (mallId, payload) => {
     try {
-        const res = await api.patch(API_ENDPOINTS.UPDATE_ADMIN_MALL_BY_ID_API(mallId), payload);
+        const res = await api.patch(API_ENDPOINTS.MALL_ADMIN_UPDATE_ADMIN_MALL_BY_ID_API(mallId), payload);
         return res.data
     } catch (e) {
         console.log(e);
@@ -35,7 +35,7 @@ const updateMallById = async (mallId, payload) => {
 
 const deleteMallById = async (mallId) => {
     try {
-        const res = await api.delete(API_ENDPOINTS.DELETE_AMDIN_MALL_BY_ID_API(mallId));
+        const res = await api.delete(API_ENDPOINTS.MALL_ADMIN_DELETE_AMDIN_MALL_BY_ID_API(mallId));
         return res.data
     } catch (e) {
         console.log(e);

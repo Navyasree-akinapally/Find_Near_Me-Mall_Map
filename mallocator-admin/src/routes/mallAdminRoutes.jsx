@@ -13,6 +13,7 @@ import ListCategories from './../pages/mallAdmin/categories/list';
 import CreateProduct from './../pages/mallAdmin/products/create';
 import EditProduct from './../pages/mallAdmin/products/edit';
 import ProductList from './../pages/mallAdmin/products/list';
+import EditMall from '../pages/mallAdmin/mall/edit';
 
 const MallAdminRoutes = () => {
     const { isMallAdminAuth } = useAuth()
@@ -22,6 +23,7 @@ const MallAdminRoutes = () => {
                 <Routes>
                     <Route element={<MallAdminLayout />}>
                         <Route index element={<Dashboard />} />
+                        <Route path='/mall/:mallId/edit' element={<EditMall />} />
 
                         <Route path='/store/create' element={<CreateStore />} />
                         <Route path='/store/list' element={<StoreList />} />

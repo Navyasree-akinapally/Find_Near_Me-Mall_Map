@@ -7,7 +7,7 @@ import { useAuth } from '../../context/auth-context';
 
 const AdminNavbar = ({ handleToggleSidebar }) => {
     const navigate = useNavigate();
-    const { setIsAuth } = useAuth();
+    const { setIsAuth, isAdminAuth } = useAuth();
 
     const handleLogout = async () => {
         authServices.logout();
@@ -20,10 +20,10 @@ const AdminNavbar = ({ handleToggleSidebar }) => {
             {/* Brand Logo */}
             <div className="flex items-center gap-4 mb-8">
                 <MenuIcon
-                    className="w-6 h-6 text-purple-600 cursor-pointer"
+                    className="w-8 h-8 text-purple-600 cursor-pointer"
                     onClick={handleToggleSidebar}
                 />
-                <Link to="/" className="text-lg font-bold text-purple-600">
+                <Link to={`${isAdminAuth ? '/admin/' : '/malladmin'}`} className="text-2xl font-bold text-purple-600">
                     MALL MAP
                 </Link>
             </div>

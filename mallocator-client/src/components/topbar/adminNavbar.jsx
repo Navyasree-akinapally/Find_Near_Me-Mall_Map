@@ -22,7 +22,7 @@ const AdminNavbar = ({ handleToggleSidebar }) => {
                 <MenuIcon className="w-6 h-6 text-purple-600 cursor-pointer" onClick={handleToggleSidebar} />
                 <Link
                     to="/"
-                    className="text-lg font-bold text-purple-600"
+                    className="text-2xl font-bold text-purple-600"
                 >
                     MALL MAP
                 </Link>

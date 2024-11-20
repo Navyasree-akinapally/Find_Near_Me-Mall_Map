@@ -19,8 +19,8 @@ function SignUp() {
     const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    const validRoutes = ['admin', 'customer'];
-    const isAdminSignup = location.pathname === "/auth/registration/admin";
+    const validRoutes = ['malladmin', 'superadmin'];
+    const isSuperAdminSignup = location.pathname === "/auth/registration/malladmin";
 
     const formik = useFormik({
         initialValues,
@@ -68,12 +68,12 @@ function SignUp() {
             >
                 <div className="text-center mb-8">
                     <h1 className="text-2xl font-bold mb-2">
-                        Sign Up As {isAdminSignup ? "Admin" : "Customer"}
+                        Sign Up As Super Admin
                     </h1>
                     <div className="text-gray-400 text-sm">
                         Already have an Account?{" "}
                         <Link
-                            to={!isAdminSignup ? "/auth/customer" : "/auth/admin"}
+                            to={"/auth/superadmin"}
                             className="text-blue-500 font-bold"
                         >
                             Login
@@ -162,7 +162,7 @@ function SignUp() {
                     </button>
                 </div>
 
-                <div className="mt-4 text-center">
+                {/* <div className="mt-4 text-center">
                     <button
                         type="button"
                         className="text-sm text-blue-500 underline"
@@ -172,7 +172,7 @@ function SignUp() {
                     >
                         Switch to {isAdminSignup ? "User" : "Admin"} Signup
                     </button>
-                </div>
+                </div> */}
             </form>
 
         </BaseLoading>

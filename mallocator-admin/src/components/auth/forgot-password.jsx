@@ -4,6 +4,7 @@ import BaseLoading from "../loader/config-loading";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import authServices from "../../services/auth.service";
 import { useAuth } from "../../context/auth-context";
+import { Info } from "lucide-react";
 
 function ForgotPassword() {
     const { setIsAuth } = useAuth();
@@ -43,7 +44,7 @@ function ForgotPassword() {
     return (
         <BaseLoading loading={loading}>
             <form
-                className="w-full text-white"
+                className="w-full max-w-md p-6 bg-gray-800 text-white rounded-lg shadow-md md:max-w-lg lg:max-w-xl"
                 onSubmit={(e) => {
                     e.preventDefault();
                     formik.handleSubmit();
@@ -51,63 +52,67 @@ function ForgotPassword() {
                 noValidate
                 id="kt_login_signin_form"
             >
-                <div className="text-center mb-10">
-                    <h1 className="text-white text-2xl font-bold mb-3">
-                        Forgot your password?
+                <div className="text-center mb-8">
+                    <h1 className="text-2xl font-bold mb-2">
+                        Forgot your password
                     </h1>
-                    <div className="text-slate-500 font-semibold text-lg">
-                        New Here?{" "}
-                        <Link to="/auth/registration/customer" className="text-purple-500 font-bold">
-                            Create an Account
-                        </Link>
+                    <div className="text-gray-400 text-sm">
+                        <div className="text-gray-400 text-sm">
+                            New Here? {" "}
+                            <Link
+                                to={'/auth/registration/customer'}
+                                className="text-blue-500 font-bold"
+                            >
+                                Create an Account
+                            </Link>
+                        </div>
                     </div>
                 </div>
 
                 {formik.status && (
-                    <div className="mb-4 text-red-600 font-bold">
+                    <div className="mb-4 text-red-500 font-medium">
                         <div>{formik.status}</div>
                     </div>
                 )}
 
-                {message && (
-                    <div className="mb-4 text-teal-600 font-bold">
-                        <div>{message}</div>
-                    </div>
-                )}
+                {message && <div className="text-blue-300 mb-4 flex gap-4 items-center">
+                    <Info />
+                    {message}
+                </div>}
 
-                <div className="mb-4">
-                    <label className="block text-white text-sm font-bold mb-2">Email/Username</label>
-                    <input
-                        placeholder="Enter email or username"
-                        {...formik.getFieldProps("email")}
-                        className="w-full px-3 py-2 bg-gray-200 text-black outline-none rounded-sm"
-                        type="email"
-                        name="email"
-                        autoComplete="off"
-                    />
+
+                <div className="space-y-4">
+                    <div>
+                        <label className="block text-sm font-semibold mb-2">Email</label>
+                        <input
+                            placeholder="Enter email"
+                            {...formik.getFieldProps("email")}
+                            className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring focus:ring-blue-500"
+                            type="email"
+                            name="email"
+                            autoComplete="off"
+                        />
+                    </div>
                 </div>
 
-
-                <div className="text-center text-slate-900 pt-4">
+                <div className="mt-6">
                     <button
                         type="submit"
-                        className="bg-slate-400 w-full py-2 font-semibold rounded-sm"
+                        className="w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow-md transition duration-200 disabled:bg-gray-600"
                         disabled={formik.isSubmitting}
                         onClick={() => setIsButtonClicked(true)}
                     >
                         {loading && isButtonClicked ? (
                             <span>
                                 Please wait...
-                                <span className="spinner-border spinner-border-sm ml-2"></span>
+                                <span className="ml-2 spinner-border spinner-border-sm"></span>
                             </span>
                         ) : (
-                            "Continue"
+                            "Submit"
                         )}
                     </button>
                 </div>
-
             </form>
-
         </BaseLoading>
     );
 }

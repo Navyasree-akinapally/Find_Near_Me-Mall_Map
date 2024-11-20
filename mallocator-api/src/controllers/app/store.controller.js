@@ -70,7 +70,8 @@ async function getStoresByStateAndCity(req) {
                             contacts: '$contacts',
                             isOpen: '$isOpen',
                             timing: '$timing',
-                            like_count: '$like_count'
+                            like_count: '$like_count',
+                            image_url: '$image_url'
                         }
                     },
                     location_url: { $first: '$mallDetails.location_url' },

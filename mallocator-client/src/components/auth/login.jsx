@@ -48,7 +48,7 @@ function Login() {
     return (
         <BaseLoading loading={loading}>
             <form
-                className="w-full text-white"
+                className="w-full max-w-md p-6 bg-gray-800 text-white rounded-lg shadow-md md:max-w-lg lg:max-w-xl"
                 onSubmit={(e) => {
                     e.preventDefault();
                     formik.handleSubmit();
@@ -56,77 +56,81 @@ function Login() {
                 noValidate
                 id="kt_login_signin_form"
             >
-                <div className="text-center mb-10">
-                    <h1 className="text-white text-2xl font-bold mb-3">
-                        Sign In to "User" Portal
+                <div className="text-center mb-8">
+                    <h1 className="text-2xl font-bold mb-2">
+                        Login In
                     </h1>
-                    <div className="text-slate-500 font-semibold text-lg">
-                        New Here?{" "}
-                        <Link to="/auth/registration/customer" className="text-purple-500 font-bold">
+                    <div className="text-gray-400 text-sm">
+                        New Here? {" "}
+                        <Link
+                            to={'/auth/registration/customer'}
+                            className="text-blue-500 font-bold"
+                        >
                             Create an Account
                         </Link>
                     </div>
                 </div>
 
                 {formik.status && (
-                    <div className="mb-4 text-red-600 font-bold">
+                    <div className="mb-4 text-red-500 font-medium">
                         <div>{formik.status}</div>
                     </div>
                 )}
 
-                <div className="mb-4">
-                    <label className="block text-white text-sm font-bold mb-2">Email/Username</label>
-                    <input
-                        placeholder="Enter email or username"
-                        {...formik.getFieldProps("email")}
-                        className="w-full px-3 py-2 bg-gray-200 text-black outline-none rounded-sm"
-                        type="email"
-                        name="email"
-                        autoComplete="off"
-                    />
-                </div>
+                <div className="space-y-4">
 
-                <div className="mb-4">
-                    <label className="block text-white text-sm font-bold mb-2">Password</label>
-                    <div className="flex items-center">
+                    <div>
+                        <label className="block text-sm font-semibold mb-2">Email</label>
                         <input
-                            type={showPassword ? "text" : "password"}
-                            {...formik.getFieldProps("password")}
-                            className="w-full px-3 py-2 bg-gray-200 text-black rounded-sm"
+                            placeholder="Enter email"
+                            {...formik.getFieldProps("email")}
+                            className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring focus:ring-blue-500"
+                            type="email"
+                            name="email"
                             autoComplete="off"
-                            placeholder="Password"
                         />
-                        <button
-                            type="button"
-                            onClick={() => setShowPassword(!showPassword)}
-                            className="ml-2 text-gray-400"
-                        >
-                            <i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`} />
-                        </button>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-semibold mb-2">Password</label>
+                        <div className="flex items-center">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                {...formik.getFieldProps("password")}
+                                className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring focus:ring-blue-500"
+                                autoComplete="off"
+                                placeholder="Password"
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="ml-2 text-gray-400 focus:outline-none hover:text-gray-200"
+                            >
+                                <i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`} />
+                            </button>
+                        </div>
                     </div>
                 </div>
-
-
-                <div className="text-center text-slate-900 pt-4">
+                <span className="text-sm text-gray-500">Forgotten Password?{" "}
+                    <Link to={'/auth/forgot-password'} className="hover:underline text-blue-500">Click Here</Link>
+                </span>
+                <div className="mt-6">
                     <button
                         type="submit"
-                        className="bg-slate-400 w-full py-2 font-semibold rounded-sm"
+                        className="w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow-md transition duration-200 disabled:bg-gray-600"
                         disabled={formik.isSubmitting}
                         onClick={() => setIsButtonClicked(true)}
                     >
                         {loading && isButtonClicked ? (
                             <span>
                                 Please wait...
-                                <span className="spinner-border spinner-border-sm ml-2"></span>
+                                <span className="ml-2 spinner-border spinner-border-sm"></span>
                             </span>
                         ) : (
-                            "Continue"
+                            "Submit"
                         )}
                     </button>
                 </div>
-                <span className="text-left text-white mt-2">Forgetten Password? {" "}
-                    <Link to={'/auth/forgot-password'} className="hover:underline text-teal-500">Click Here</Link>
-                </span>
             </form>
 
         </BaseLoading>

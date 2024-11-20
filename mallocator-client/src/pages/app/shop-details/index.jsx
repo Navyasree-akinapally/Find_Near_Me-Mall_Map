@@ -143,8 +143,9 @@ const ShopDetails = () => {
             </div> */}
                                     <div className="font-semibold">{priceFormate(prod.price)}</div>
                                     <div
+                                        title={prod.status === 'available' ? 'Available' : prod.status === 'not_available' ? 'Not Available' : 'Coming Soon'}
                                         className={`
-                                            absolute end-0 top-0 w-12 h-12 rounded-full 
+                                            absolute end-0 top-0 w-16 h-16 rounded-full 
                 ${prod.status === 'available' ? 'text-green-500' : prod.status === 'not_available' ? 'text-red-500' : 'text-yellow-500'}
                 `}
                                     >
