@@ -71,10 +71,10 @@ const ShopDetails = () => {
         <BaseLoading loading={loading}>
             <div className='px-6 lg:px-16 pb-10 h-full'>
                 <label htmlFor="" className='text-4xl font-bold'>{data?.name} in the {cityName} center</label>
-                <div className='grid lg:grid-cols-4 mt-8 justify-center text-black gap-8'>
-                    <div className={` rounded-xl w-full py-8 px-4 grid grid-cols-4 col-span-3 ${isDarkMode ? 'bg-[#FFCF9D] text-gray-900' : 'bg-[#352F44] text-white'}`}>
-                        <div className={`relative mx-4 rounded-xl pt-8 flex items-center justify-center`}>
-                            <span className={`rounded-xl text-xs p-4 flex`}>
+                <div className='grid xl:grid-cols-4 mt-8 justify-center text-black gap-8'>
+                    <div className={`rounded-xl w-full py-8 px-4 md:grid md:grid-cols-4 md:col-span-3 ${isDarkMode ? 'bg-[#FFCF9D] text-gray-900' : 'bg-[#352F44] text-white'}`}>
+                        <div className={`relative md:mx-4 rounded-xl pt-8 flex flex-col md:flex-row items-center justify-center`}>
+                            <span className={`rounded-xl text-xs p-4`}>
                                 <img src={data?.image_url} alt={data?.name} className='object-contain w-full h-full' />
                             </span>
                             <div className={`absolute top-2 end-2 cursor-pointer ${isLiked ? 'text-red-400' : ''}`} onClick={() => handleLike(storeId)}>
@@ -116,7 +116,9 @@ const ShopDetails = () => {
                             </div>
                         </div>
                     </div>
-                    <OpeningHours isDarkMode={isDarkMode} />
+                    <div className='w-full'>
+                        <OpeningHours isDarkMode={isDarkMode} />
+                    </div>
                 </div>
                 <div className='my-4'>
                     <h1 className='text-4xl font-bold mb-6'>Products</h1>
@@ -129,7 +131,7 @@ const ShopDetails = () => {
                                 key={prod._id} // Assuming each product has a unique `_id`
                             >
                                 <div className="flex flex-col items-center w-full">
-                                    <div className="aspect-square overflow-hidden relative">
+                                    <div className="aspect-square overflow-hidden relative max-h-[20em]">
                                         <img
                                             src={prod.image}
                                             alt={prod.name}

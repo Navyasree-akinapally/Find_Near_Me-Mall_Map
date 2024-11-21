@@ -35,7 +35,7 @@ const StoreLayout = ({ mallId, loading, data, isDarkMode, newStoresData }) => {
 
     return (
         <BaseLoading loading={loading}>
-            <div className={`mx-6 lg:mx-16 lg:py-8 text-black ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <div className={`mx-2 sm:mx-12 lg:py-8 text-black ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 {/* Conditionally render headers based on the page type */}
                 {!isNewStoresPage && (
                     <>
@@ -47,10 +47,10 @@ const StoreLayout = ({ mallId, loading, data, isDarkMode, newStoresData }) => {
                     </>
                 )}
 
-                <div className='grid md:grid-cols-3 gap-8 mt-8'>
+                <div className='md:grid md:grid-cols-3 md:gap-8 mt-8 items-center mx-auto md:items-start'>
                     {/* Sidebar with category links */}
-                    <div className={`col-span-1 h-[40em] p-6 mx-auto lg:w-[22em] overflow-y-auto rounded-xl ${isDarkMode ? 'bg-[#FFCF9D] text-gray-900' : 'bg-[#352F44] text-white'}`}>
-                        <span className={` font-bold ${isDarkMode ? 'text-[#794a2c]' : 'text-red-500'}`}>All Stores ({storeCount})</span>
+                    <div className={`col-span-1 md:h-[40em] p-6 md:mx-auto w-full lg:w-[22em] overflow-y-auto rounded-xl mb-8 ${isDarkMode ? 'bg-[#FFCF9D] text-gray-900' : 'bg-[#352F44] text-white'}`}>
+                        <span className={`font-bold ${isDarkMode ? 'text-[#794a2c]' : 'text-red-500'}`}>All Stores ({storeCount})</span>
                         <hr className='my-4' />
 
                         {/* New Stores link */}

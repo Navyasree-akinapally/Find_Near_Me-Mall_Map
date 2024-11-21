@@ -21,6 +21,16 @@ html {
   color-scheme: light dark;
 }
 
+.hidden-below-sm {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .hidden-below-sm {
+    display: flex; /* Or block, inline-block, etc., depending on your layout needs */
+  }
+}
+
 body {
   background-color: #d7d4d4;
   transition: background-color 0.3s ease;

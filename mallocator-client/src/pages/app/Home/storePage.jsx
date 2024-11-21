@@ -14,10 +14,10 @@ const StorePage = ({ data, loading }) => {
                 {data?.length > 0 ? (
                     <div>
                         {data.map((mall, index) => (
-                            <div key={index} className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full'>
+                            <div key={index} className='grid md:grid-cols-2 lg:grid-cols-3 items-center justify-center gap-8 w-full'>
                                 {mall.stores.map((store) => {
                                     return (
-                                        <div className='flex w-full'>
+                                        <div className='w-full'>
                                             <StoreCard store={store} />
                                         </div>
                                     );

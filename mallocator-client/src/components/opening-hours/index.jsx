@@ -19,7 +19,7 @@ const OpeningHours = ({ isDarkMode }) => {
 
     return (
         <div
-            className={`rounded-xl h-[20em] p-4 col-span-1 w-full ${isDarkMode ? 'bg-[#FFCF9D] text-gray-900' : 'bg-[#352F44] text-white'}`}
+            className={`rounded-xl min-h-[20em] max-h-auto p-4 col-span-1 w-full ${isDarkMode ? 'bg-[#FFCF9D] text-gray-900' : 'bg-[#352F44] text-white'}`}
         >
             <span className='text-xl font-bold'>Opening hours</span>
             <div className='mt-4 flex flex-col gap-2'>

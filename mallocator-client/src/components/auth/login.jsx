@@ -48,7 +48,7 @@ function Login() {
     return (
         <BaseLoading loading={loading}>
             <form
-                className="w-full max-w-md p-6 bg-gray-800 text-white rounded-lg shadow-md md:max-w-lg lg:max-w-xl"
+                className="w-full max-w-md p-2 lg:p-6 bg-gray-800 text-white rounded-lg shadow-md md:max-w-lg lg:max-w-xl"
                 onSubmit={(e) => {
                     e.preventDefault();
                     formik.handleSubmit();

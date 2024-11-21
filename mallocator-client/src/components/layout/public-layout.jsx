@@ -20,7 +20,7 @@ const PublicLayout = () => {
             </div>
             <div className="pt-24 h-full flex flex-col">
                 {!isSearchPage && (
-                    <div className="px-8">
+                    <div className="md:px-8">
                         <NavTracker isDarkMode={isDarkMode} />
                     </div>
                 )}

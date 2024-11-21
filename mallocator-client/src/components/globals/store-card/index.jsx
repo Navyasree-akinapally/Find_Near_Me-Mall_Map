@@ -9,7 +9,7 @@ import { useTheme } from '../../../context/theme-context';
 
 const StoreCard = ({ store }) => {
     const { isDarkMode } = useTheme()
-    const { stateName, cityName } = useParams()
+    const { stateName, cityName, storeId } = useParams()
     const slugName = store.name.replace(/\s+/g, '-');
     const { isAuth } = useAuth();
     const navigate = useNavigate();
@@ -46,7 +46,7 @@ const StoreCard = ({ store }) => {
     };
     return (
         <div className=''>
-            <Link to={`/${stateName}/${cityName}/shop-details/${slugName}/${store._id}`} className='flex flex-col gap-2'>
+            <Link to={`/${stateName}/${cityName}/shop-details/${slugName}/${store._id}`} className='flex flex-col gap-2 w-full'>
 
                 <div className={`relative text-center flex items-center justify-center rounded-xl text-black w-60 h-32 shadow-2xl  ${isDarkMode ? 'bg-[#FFCF9D] text-gray-900' : 'bg-[#352F44] text-white'}`}>
                     <button

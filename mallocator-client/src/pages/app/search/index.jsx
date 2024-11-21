@@ -97,7 +97,7 @@ const SearchPage = () => {
             ) : (
                 <div className='flex items-center justify-center p-8'>
                     {searchData.length > 0 ? (
-                        <div className='grid grid-cols-3 gap-8 col-span-2'>
+                        <div className='grid sm:grid-cols-2 md:grid-cols-3 gap-8 col-span-2'>
                             {searchData.map((store, index) => {
                                 return (
                                     <div className='relative'>
