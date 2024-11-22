@@ -4,6 +4,13 @@ import animate from "tailwindcss-animate";
 module.exports = {
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px', // Large breakpoint
+      xl: '1280px',
+      '2xl': '1536px',
+    },
     container: {
       center: true,
       padding: "2rem",

@@ -11,6 +11,28 @@ body {
 /* globals.css or App.css */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap');
 
+.hidden-below-sm {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .hidden-below-sm {
+    display: flex;
+    /* Or block, inline-block, etc., depending on your layout needs */
+  }
+}
+
+.hidden-below-lg {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .hidden-below-lg {
+    display: flex;
+    /* Or block, inline-block, etc., depending on your layout needs */
+  }
+}
+
 body {
   font-family: 'Manrope', sans-serif;
 }

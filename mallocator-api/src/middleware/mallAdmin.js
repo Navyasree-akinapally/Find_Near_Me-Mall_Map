@@ -8,7 +8,9 @@ const checkMallAdmin = async (req, res, next) => {
 
         const user = await User.findById(userId).populate('assigned_malls')
         if (!user || user.role !== 'malladmin') {
-            throw Error('Acess Denied. not a mall Admin')
+            return createResponse(res, resStatusCode.FORBIDDEN, {
+                message: 'Admin not found.'
+            });
         }
 
         req.malls = user.assigned_malls
@@ -27,13 +29,17 @@ const checkMallAdminAccess = async (req, res, next) => {
 
         const user = await User.findById(userId).populate('assigned_malls')
         if (!user || user.role !== 'malladmin') {
-            throw Error('Acess Denied. not a mall Admin')
+            return createResponse(res, resStatusCode.FORBIDDEN, {
+                message: 'Acess Denied. not a mall Admin'
+            });
         }
 
         const hasAccess = user.assigned_malls.some(mall => mall._id.toString() === mallId);
 
         if (!hasAccess) {
-            throw Error('You do not have access to this mall')
+            return createResponse(res, resStatusCode.FORBIDDEN, {
+                message: 'You do not have access to this mall'
+            });
         }
 
         next()

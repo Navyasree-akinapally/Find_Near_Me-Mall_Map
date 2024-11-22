@@ -58,12 +58,12 @@ function ForgotPassword() {
                     </h1>
                     <div className="text-gray-400 text-sm">
                         <div className="text-gray-400 text-sm">
-                            New Here? {" "}
+                            Have An Account? {" "}
                             <Link
-                                to={'/auth/registration/customer'}
+                                to={'/auth/malladmin'}
                                 className="text-blue-500 font-bold"
                             >
-                                Create an Account
+                                Login
                             </Link>
                         </div>
                     </div>
